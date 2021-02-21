@@ -7,6 +7,6 @@ pip install -r requirements.txt
 ```
 
 Deploy your backend
-```cmd
+```py
 python api.py
 ```
