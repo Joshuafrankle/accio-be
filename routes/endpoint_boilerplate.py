@@ -1,10 +1,10 @@
 import pymysql
-from app import app
+from app import app, forbidden
 from db_config import mysql
-from flask import jsonify
-from flask import request
+from flask import jsonify, request
 
 
+'''
 @app.route('/POST_endpoint', methods=['POST'])
 def POST_endpoint_function():
     try:
@@ -24,7 +24,7 @@ def POST_endpoint_function():
             res.status_code = 200
             return res
         else:
-            return not_found()
+            return forbidden()
 
     except Exception as e:
         print(e)
@@ -52,17 +52,4 @@ def get_endpoint_function():
         cursor.close()
         conn.close()
 
-
-@app.errorhandler(404)
-def not_found(error=None):
-    message = {
-        'status': 404,
-        'message': 'There is no record: ' + request.url,
-    }
-    res = jsonify(message)
-    res.status_code = 404
-    return res
-
-
-if __name__ == "__main__":
-    app.run()
+'''

@@ -1,12 +1,16 @@
 # flask-rest-api-boilerplate
 Flask Python Restful API - MySQL Boilerplate
 
-Install dependencies
+## Install dependencies
 ```cmd 
 pip install -r requirements.txt 
 ```
 
-Deploy your backend
+## API Endpoints
+- Write your APIs inside the routes directory
+- Import the endpoints in app.py
+
+## Deploy your backend
 ```py
-python api.py
+flask run {or} python app.py
 ```
