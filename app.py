@@ -1,6 +1,5 @@
 from routes import endpoint_boilerplate
 from flask import Flask, jsonify, request
-from flask_cors import CORS, cross_origin
 
 app = Flask(__name__, static_url_path='', static_folder='.')
 CORS(app)  # allow cross origin
@@ -30,6 +29,16 @@ def forbidden(error=None):
     res = jsonify(message)
     res.status_code = 403
     return res
+
+
+# CORS section
+@app.after_request
+def after_request_func(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add('Access-Control-Allow-Headers', "*")
+    response.headers.add('Access-Control-Allow-Methods', "*")
+    return response
+# end CORS section
 
 
 # Add your API endpoints here
