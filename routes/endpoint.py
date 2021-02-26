@@ -8,9 +8,9 @@ from flask import jsonify, request
 @app.route('/POST_endpoint', methods=['POST'])
 def POST_endpoint_function():
     try:
-        _json = request.json
-        _param1 = _json['param1']
-        _param2 = _json['param2']
+        _form = request.form
+        _param1 = _form['param1']
+        _param2 = _form['param2']
 
         if _param1 and _param2 and request.method == 'POST':
             # insert record in database
