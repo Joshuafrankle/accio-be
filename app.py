@@ -2,11 +2,8 @@ from routes import endpoint_boilerplate
 from flask import Flask, jsonify, request
 
 app = Flask(__name__, static_url_path='', static_folder='.')
-CORS(app)  # allow cross origin
-
 
 # 404 handler
-
 @app.errorhandler(404)
 def not_found(error=None):
     message = {
@@ -16,10 +13,11 @@ def not_found(error=None):
     res = jsonify(message)
     res.status_code = 404
     return res
+# 404 handler ends
+
+
 
 # 403 handler
-
-
 @app.errorhandler(403)
 def forbidden(error=None):
     message = {
@@ -29,7 +27,7 @@ def forbidden(error=None):
     res = jsonify(message)
     res.status_code = 403
     return res
-
+# 403 handler ends
 
 # CORS section
 @app.after_request
@@ -42,7 +40,7 @@ def after_request_func(response):
 
 
 # Add your API endpoints here
-
+from routes import endpoint
 
 @app.route('/')
 def get_endpoint_function():
