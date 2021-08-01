@@ -1,35 +1,13 @@
-from routes import endpoint_boilerplate
-from flask import Flask, jsonify, request
+from flask import Flask
+from flask.helpers import send_from_directory
+import os
 
 app = Flask(__name__, static_url_path='', static_folder='.')
-
-# 404 handler
-@app.errorhandler(404)
-def not_found(error=None):
-    message = {
-        'status': 404,
-        'message': 'Your requested url could not be found: ' + request.url,
-    }
-    res = jsonify(message)
-    res.status_code = 404
-    return res
-# 404 handler ends
-
-
-
-# 403 handler
-@app.errorhandler(403)
-def forbidden(error=None):
-    message = {
-        'status': 403,
-        'message': 'Forbidden',
-    }
-    res = jsonify(message)
-    res.status_code = 403
-    return res
-# 403 handler ends
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # CORS section
+
+
 @app.after_request
 def after_request_func(response):
     response.headers.add("Access-Control-Allow-Origin", "*")
@@ -39,8 +17,13 @@ def after_request_func(response):
 # end CORS section
 
 
+import error_handles
+
 # Add your API endpoints here
-from routes import endpoint
+from routes import users
+# from routes import cars
+# ...
+
 
 @app.route('/')
 def get_endpoint_function():
@@ -52,5 +35,12 @@ def get_endpoint_function():
         print(e)
 
 
+# Setting Favicon
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
