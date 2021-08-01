@@ -1,7 +1,12 @@
 from app import app
-from flaskext.mysql import MySQL
 
-mysql = MySQL()
+
+# MySQL imports
+from flaskext.mysql import MySQL
+from pymysql.cursors import DictCursor
+
+# Rows from cursors will always be of type dict || cursorclass=DictCursor
+mysql = MySQL(cursorclass=DictCursor)
 
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = ""
