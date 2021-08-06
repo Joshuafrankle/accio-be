@@ -12,5 +12,5 @@ pip install -r requirements.txt
 
 ## Deploy your backend
 ```py
-flask run {or} python app.py
+flask run
 ```
