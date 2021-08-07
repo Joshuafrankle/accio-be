@@ -20,7 +20,7 @@ def after_request_func(response):
 import error_handles
 
 # Add your API endpoints here
-from routes import users
+from routes import mail
 # from routes import cars
 # ...
 
